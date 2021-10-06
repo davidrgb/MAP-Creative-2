@@ -19,23 +19,22 @@ class TicTacToe {
   ];
 
   void createBoard() {
-    for (int y = 0; y < 3; y++) {
-      for (int x = 0; x < 3; x++) {
-        board[x][y] = new Space(index: y * 3 + x,coordinateX: x, coordinateY: y);
-      }
+    for (int i = 0; i < 9; i++) {
+      board.insert(i, new Space(index: i));
     }
   }
 
-  void onTap(int x, int y, bool isPlayerOne) {
+  void onTap(int i, bool isPlayerOne) {
     if (isPlayerOne) {
-      board[x][y].value = 1;
-      playerOneSpaces.add(board[x][y].index);
+      board[i].value = 1;
+      playerOneSpaces.add(board[i].index);
     }
     else {
-      board[x][y].value = 2;
-      playerTwoSpaces.add(board[x][y].index);
+      board[i].value = 2;
+      playerTwoSpaces.add(board[i].index);
     }
     freeSpaces--;
+    checkWin();
   }
 
   void checkWin() {
@@ -59,14 +58,10 @@ class TicTacToe {
 
 class Space {
   late int index;
-  late int coordinateX;
-  late int coordinateY;
   late int value;
 
   Space({
     this.index = -1,
-    this.coordinateX = -1,
-    this.coordinateY = -1,
     this.value = 0,
   });
 }
