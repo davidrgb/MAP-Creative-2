@@ -24,7 +24,7 @@ class Minesweeper {
     this.cheats = false,
   });
 
-  void createBoard(Difficulty difficulty) {
+  void createBoard() {
     switch (difficulty) {
       case Difficulty.Normal:
         spaces = 64;
@@ -60,29 +60,40 @@ class Minesweeper {
 
     // Fill spaces
     for (int i = 0; i < spaces; i++) {
-      if (trapTileIndices.contains(i)) board.add(new Space(isTrap: true));
-      else board.add(new Space(isTrap: false));
+      if (trapTileIndices.contains(i)) board.insert(i, new Space(index: i, isTrap: true));
+      else board.insert(i, new Space(index: i, isTrap: false));
     }
 
     // Calculate adjacent traps
     for (int i = 0; i < trapTileIndices.length; i++) {
       for (int r = -1; r < 2; r++) {
         for (int c = -1; c < 2; c++) {
-          int index = i + (r * root) + c;
-          if (index > -1 && index < spaces) board[i + (r * root) + c].adjacentTraps++;
+          int index = trapTileIndices[i] + (r * root) + c;
+          if (index > -1 && index < spaces && (index - trapTileIndices[i]).abs() <= root) board[index].adjacentTraps++;
         }
       }
     }
   }
+
+  @override
+  String toString() {
+    return 'Minesweeper[diff=$difficulty spaces=$spaces root=$root traps=$traps gameOver=$gameOver cheats=$cheats board=$board]';
+  }
 }
 
 class Space {
+  late int index;
   late int adjacentTraps;
   late bool isTrap;
 
   Space({
-    this.adjacentTraps = -1,
+    this.index = -1,
+    this.adjacentTraps = 0,
     this.isTrap = false,
   });
 
+  @override
+  String toString() {
+    return '\nSpace[index=$index adjacentTraps=$adjacentTraps isTrap=$isTrap]';
+  }
 }

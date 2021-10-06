@@ -1,3 +1,4 @@
+import 'package:creative2/viewscreen/game_screen.dart';
 import 'package:creative2/viewscreen/start_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -24,6 +25,7 @@ class Creative2App extends StatelessWidget {
         initialRoute: StartScreen.routeName,
         routes: {
           StartScreen.routeName: (context) => StartScreen(),
+          GameScreen.routeName: (context) => GameScreen(),
         });
   }
 }

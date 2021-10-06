@@ -1,3 +1,4 @@
+import 'package:creative2/viewscreen/game_screen.dart';
 import 'package:flutter/material.dart';
 
 class StartScreen extends StatefulWidget {
@@ -54,6 +55,6 @@ class _Controller {
   _Controller(this.state);
 
   void startGame() {
-
+    Navigator.pushNamed(state.context, GameScreen.routeName);
   }
 }
