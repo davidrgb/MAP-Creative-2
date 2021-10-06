@@ -22,15 +22,28 @@ class _StartScreenState extends State<StartScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Start Menu'),
+        title: Text('Minesweeper'),
       ),
-      body: Column(
-        children: [
-          ElevatedButton(
-            onPressed: controller.startGame,
-            child: Text('New Game'),
-          ),
-        ],
+      body: Container(
+        width: MediaQuery.of(context).size.width,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: controller.startGame,
+              child: Text('New Game'),
+            ),
+            ElevatedButton(
+              onPressed: controller.startGame,
+              child: Text('Previous Games'),
+            ),
+            ElevatedButton(
+              onPressed: controller.startGame,
+              child: Text('Settings'),
+            ),
+          ],
+        ),
       ),
     );
   }
