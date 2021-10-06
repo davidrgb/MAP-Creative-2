@@ -28,7 +28,7 @@ class _GameScreenState extends State<GameScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('TiC-Tac-Toe'),
+        title: Text('Tic-Tac-Toe'),
       ),
       body: Container(
         width: MediaQuery.of(context).size.width,

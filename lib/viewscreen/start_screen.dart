@@ -23,7 +23,7 @@ class _StartScreenState extends State<StartScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Tic-Tac-Toe'),
+        title: Text('Start Menu'),
       ),
       body: Container(
         width: MediaQuery.of(context).size.width,
