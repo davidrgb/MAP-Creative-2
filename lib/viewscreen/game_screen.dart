@@ -1,4 +1,4 @@
-import 'package:creative2/model/minesweeper.dart';
+import 'package:creative2/model/tictactoe.dart';
 import 'package:flutter/material.dart';
 
 class GameScreen extends StatefulWidget {
@@ -13,7 +13,7 @@ class GameScreen extends StatefulWidget {
 class _GameScreenState extends State<GameScreen> {
   late _Controller controller;
 
-  late Minesweeper game;
+  late TicTacToe game;
 
   @override
   void initState() {
@@ -23,12 +23,12 @@ class _GameScreenState extends State<GameScreen> {
 
   @override
   Widget build(BuildContext context) {
-    game = new Minesweeper();
+    game = new TicTacToe();
     game.createBoard();
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Minesweeper'),
+        title: Text('TiC-Tac-Toe'),
       ),
       body: Container(
         width: MediaQuery.of(context).size.width,
