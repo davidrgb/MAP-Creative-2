@@ -1,5 +1,4 @@
 import 'package:creative2/viewscreen/tictactoe_screen.dart';
-import 'package:creative2/viewscreen/start_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -22,10 +21,9 @@ class Creative2App extends StatelessWidget {
             ),
           ),
         ),
-        initialRoute: StartScreen.routeName,
+        initialRoute: TicTacToeScreen.routeName,
         routes: {
-          StartScreen.routeName: (context) => StartScreen(),
-          GameScreen.routeName: (context) => GameScreen(),
+          TicTacToeScreen.routeName: (context) => TicTacToeScreen(),
         });
   }
 }

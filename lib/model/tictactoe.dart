@@ -9,12 +9,16 @@ class TicTacToe {
   bool playerOneWin = false;
   bool playerTwoWin = false;
   bool tie = false;
+  int playerOneWins = 0;
+  int playerTwoWins = 0;
 
   TicTacToe({
     this.playerOneTurn = true,
     this.playerOneWin = false,
     this.playerTwoWin = false,
     this.tie = false,
+    this.playerOneWins = 0,
+    this.playerTwoWins = 0,
   });
 
   final List<List<int>> winCombinations = [
@@ -55,12 +59,14 @@ class TicTacToe {
           playerOneSpaces.contains(set[2]))
       {
         playerOneWin = true;
+        playerOneWins++;
       }
       else if (playerTwoSpaces.contains(set[0]) &&
               playerTwoSpaces.contains(set[1]) &&
               playerTwoSpaces.contains(set[2]))
       {
         playerTwoWin = true;
+        playerTwoWins++;
       }
     }
     if (!playerOneWin && !playerTwoWin && freeSpaces == 0) tie = true;

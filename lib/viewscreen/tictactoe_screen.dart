@@ -1,16 +1,16 @@
 import 'package:creative2/model/tictactoe.dart';
 import 'package:flutter/material.dart';
 
-class GameScreen extends StatefulWidget {
+class TicTacToeScreen extends StatefulWidget {
   static const routeName = '/gameScreen';
 
   @override
   State<StatefulWidget> createState() {
-    return _GameScreenState();
+    return _TicTacToeScreenState();
   }
 }
 
-class _GameScreenState extends State<GameScreen> {
+class _TicTacToeScreenState extends State<TicTacToeScreen> {
   late _Controller controller;
 
   late TicTacToe game;
@@ -120,7 +120,7 @@ class _GameScreenState extends State<GameScreen> {
                           style: Theme.of(context).textTheme.headline3,
                         ),
                         Text(
-                          'P1',
+                          'P1 - ${game.playerOneWins}',
                           style: Theme.of(context).textTheme.headline3,
                         ),
                       ],
@@ -136,7 +136,7 @@ class _GameScreenState extends State<GameScreen> {
                           style: Theme.of(context).textTheme.headline3,
                         ),
                         Text(
-                          'P2',
+                          'P2 - ${game.playerTwoWins}',
                           style: Theme.of(context).textTheme.headline3,
                         ),
                       ],
@@ -153,7 +153,7 @@ class _GameScreenState extends State<GameScreen> {
 }
 
 class _Controller {
-  late _GameScreenState state;
+  late _TicTacToeScreenState state;
   _Controller(this.state);
 
   int counter = 0;
