@@ -1,4 +1,4 @@
-import 'package:creative2/viewscreen/game_screen.dart';
+import 'package:creative2/viewscreen/tictactoe_screen.dart';
 import 'package:creative2/viewscreen/start_screen.dart';
 import 'package:flutter/material.dart';
 

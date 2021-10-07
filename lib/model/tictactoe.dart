@@ -2,10 +2,20 @@ class TicTacToe {
   var board = [];
   var playerOneSpaces = [];
   var playerTwoSpaces = [];
+  var playerOneSymbol = 'X';
+  var playerTwoSymbol = 'O';
+  bool playerOneTurn = true;
   int freeSpaces = 9;
   bool playerOneWin = false;
   bool playerTwoWin = false;
   bool tie = false;
+
+  TicTacToe({
+    this.playerOneTurn = true,
+    this.playerOneWin = false,
+    this.playerTwoWin = false,
+    this.tie = false,
+  });
 
   final List<List<int>> winCombinations = [
     [0, 1, 2],
@@ -24,8 +34,8 @@ class TicTacToe {
     }
   }
 
-  void onTap(int i, bool isPlayerOne) {
-    if (isPlayerOne) {
+  void onTap(int i) {
+    if (playerOneTurn) {
       board[i].value = 1;
       playerOneSpaces.add(board[i].index);
     }
@@ -33,6 +43,7 @@ class TicTacToe {
       board[i].value = 2;
       playerTwoSpaces.add(board[i].index);
     }
+    playerOneTurn = !playerOneTurn;
     freeSpaces--;
     checkWin();
   }
@@ -53,6 +64,27 @@ class TicTacToe {
       }
     }
     if (!playerOneWin && !playerTwoWin && freeSpaces == 0) tie = true;
+  }
+
+  void reset() {
+    board.clear();
+    playerOneSpaces.clear();
+    playerTwoSpaces.clear();
+    playerOneWin = false;
+    playerTwoWin = false;
+    tie = false;
+    freeSpaces = 9;
+    if (playerOneSymbol == 'X') {
+      playerOneSymbol = 'O';
+      playerTwoSymbol = 'X';
+      playerOneTurn = false;
+    }
+    else {
+      playerOneSymbol = 'X';
+      playerTwoSymbol = 'O';
+      playerOneTurn = true;
+    }
+    createBoard();
   }
 }
 

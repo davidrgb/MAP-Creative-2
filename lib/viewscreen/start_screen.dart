@@ -1,4 +1,4 @@
-import 'package:creative2/viewscreen/game_screen.dart';
+import 'package:creative2/viewscreen/tictactoe_screen.dart';
 import 'package:flutter/material.dart';
 
 class StartScreen extends StatefulWidget {
@@ -33,11 +33,11 @@ class _StartScreenState extends State<StartScreen> {
           children: [
             ElevatedButton(
               onPressed: controller.startGame,
-              child: Text('New Game'),
+              child: Text('Tic-Tac-Toe'),
             ),
             ElevatedButton(
               onPressed: controller.startGame,
-              child: Text('Previous Games'),
+              child: Text('Snake'),
             ),
             ElevatedButton(
               onPressed: controller.startGame,
