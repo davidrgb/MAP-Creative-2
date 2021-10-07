@@ -1,12 +1,33 @@
+import 'package:creative2/model/themeColor.dart';
 import 'package:creative2/model/tictactoe.dart';
 import 'package:flutter/material.dart';
+
+var colors = [
+  Colors.orange[800],
+  Colors.yellow[800],
+  Colors.green[800],
+  Colors.blue[800],
+  Colors.indigo[800],
+  Colors.purple[800],
+  Colors.red[800],
+];
+
+var colorNames = [
+  'Orange',
+  'Yellow',
+  'Green',
+  'Blue',
+  'Indigo',
+  'Purple',
+  'Red',
+];
 
 class TicTacToeScreen extends StatefulWidget {
   static const routeName = '/gameScreen';
 
   @override
   State<StatefulWidget> createState() {
-    return _TicTacToeScreenState();
+    return _TicTacToeScreenState(this);
   }
 }
 
@@ -20,6 +41,11 @@ class _TicTacToeScreenState extends State<TicTacToeScreen> {
 
   var buttonTags = [];
   var buttonStates = [];
+
+  late TicTacToeScreen screen;
+  _TicTacToeScreenState(this.screen);
+
+  Color? color = colors[0];
 
   void render(fn) => setState(fn);
 
@@ -46,6 +72,32 @@ class _TicTacToeScreenState extends State<TicTacToeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Tic-Tac-Toe'),
+        backgroundColor: color,
+        actions: [
+          PopupMenuButton(
+            onSelected: (int index) {
+              controller.updateColor(index);
+            },
+            itemBuilder: (BuildContext context) {
+              return <PopupMenuItem<int>>[
+                for (int i = 0; i < colors.length; i++)
+                  PopupMenuItem(
+                    value: i,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: CircleAvatar(
+                            backgroundColor: colors[i],
+                          ),
+                        ),
+                        Expanded(child: Text('${colorNames[i]}')),
+                      ],
+                    ),
+                  ),
+              ];
+            },
+          ),
+        ],
       ),
       body: Container(
         width: MediaQuery.of(context).size.width,
@@ -61,9 +113,11 @@ class _TicTacToeScreenState extends State<TicTacToeScreen> {
                 children: [
                   for (int i = 0; i < 9; i++)
                     ElevatedButton(
-                      onPressed:
-                          _gameOver || !buttonStates[i] ? null : () => controller.activateSpace(i),
+                      onPressed: _gameOver || !buttonStates[i]
+                          ? null
+                          : () => controller.activateSpace(i),
                       child: Text('${buttonTags[i]}'),
+                      style: ElevatedButton.styleFrom(primary: color),
                     ),
                 ],
               ),
@@ -96,6 +150,7 @@ class _TicTacToeScreenState extends State<TicTacToeScreen> {
                             child: Text(
                               'Reset',
                             ),
+                            style: ElevatedButton.styleFrom(primary: color),
                           ),
                         ),
                       ],
@@ -159,7 +214,9 @@ class _Controller {
   int counter = 0;
 
   void activateSpace(int index) {
-    state.buttonTags[index] = state.game.playerOneTurn ? '${state.game.playerOneSymbol}' : '${state.game.playerTwoSymbol}';
+    state.buttonTags[index] = state.game.playerOneTurn
+        ? '${state.game.playerOneSymbol}'
+        : '${state.game.playerTwoSymbol}';
     state.buttonStates[index] = false;
     state.render(() => state.game.onTap(index));
     checkWin();
@@ -183,5 +240,9 @@ class _Controller {
     state.gameOverText = '';
     state.createButtonAttr();
     state.render(() => state.game.reset());
+  }
+
+  void updateColor(int index) {
+    state.render(() => state.color = colors[index]);
   }
 }
