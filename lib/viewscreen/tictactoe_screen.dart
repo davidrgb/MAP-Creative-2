@@ -1,4 +1,3 @@
-import 'package:creative2/model/themeColor.dart';
 import 'package:creative2/model/tictactoe.dart';
 import 'package:flutter/material.dart';
 
